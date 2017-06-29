@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kopfwelt Video Component</title>
+<meta name="description" content="A web component for making video-embeds prettier">
+
+<!-- INCLUDE THESE THREE IN YOUR PAGE. X-tag must come first. -->
+<script src="https://unpkg.com/x-tag@1.5/dist/x-tag-core.min.js"></script>
+<script src="kw-video.js" async></script>
+<link rel="stylesheet" href="kw-video.css">
+
+<!-- These are only for this demo page. -->
+<script src="https://unpkg.com/prismjs@1.6.0/prism.js"></script>
+<!-- <link rel="stylesheet" href="https://unpkg.com/prismjs@1.6.0/themes/prism.css"> -->
+<link rel="stylesheet" href="demo.css">
+
+<!-- DEMONSTRATION -->
+
+<h1>&lt;kw-video&gt;</h1>
+<p>Do you want to embed a video, iframe or anything, really, only to see an ugly low-quality placeholder image with logos on top on your otherwise stunning website? And now loading the page is slow. What to do?</p>
+<p>You need to…</p>
+<ul>
+	<li>defer loading of the embed</li>
+	<li>hide it behind a front placeholder</li>
+	<li>load and insert the embed when the front is tapped</li>
+</ul>
+<p>Oh no, how annoying to develop, you say. Well, the to-do list above is actually not a to-do list, but exactly what this web component provides.</p>
+
+<h2>How to use</h2>
+<p>Include the x-tag library as well as the kw-video script and styles.
+
+<pre><code class="language-markup"><a href="https://unpkg.com/x-tag/dist/x-tag-core.min.js">&lt;script src=&quot;https://unpkg.com/x-tag/dist/x-tag-core.min.js&quot;&gt;&lt;/script&gt;</a>
+<a href="kw-video.js">&lt;script src=&quot;kw-video.js&quot;&gt;&lt;/script&gt;</a>
+<a href="kw-video.js">&lt;script src=&quot;kw-video.js&quot;&gt;&lt;/script&gt;</a>
+</code></pre>
+
+<p>on your page and in that order. Finally insert the web component:</p>
+
+<pre><code class="language-markup">&lt;kw-video&gt;
+  &lt;kw-video-front&gt;
+    &lt;img src=&quot;https://i.imgur.com/CXmwG8G.jpg&quot;&gt;
+  &lt;/kw-video-front&gt;
+  &lt;template&gt;
+    &lt;iframe src=&quot;https://player.vimeo.com/video/108194249&quot;&gt;&lt;/iframe&gt;
+  &lt;/template&gt;
+&lt;/kw-video&gt;</code></pre>
+
+<p>and you will get this. Try to tap it!</p>
+
+<kw-video>
+  <kw-video-front>
+    <img src="play.svg" style="position: absolute; position: absolute; width: 80px; height: 80px; margin: auto; left: 0; right: 0; top: 0; bottom: 0" alt="Play">
+    <img src="https://i.imgur.com/CXmwG8G.jpg" alt="">
+  </kw-video-front>
+  <template>
+    <iframe src="https://player.vimeo.com/video/108194249"></iframe>
+  </template>
+</kw-video>
+
+<h2>API</h2>
+<p>Available methods:</p>
+<ul>
+	<li><code>open()</code></li>
+	<li><code>close()</code></li>
+</ul>
+
+<p>You can get interact with kw-video like this:</p>
+<pre><code class="language-js">var el = document.querySelector('kw-video')
+el.open()
+</code></pre>
+
+<p>To test, open your browser console and paste the snippet above. Notice how first kw-video on this page opened? Well, unless you already opened it yourself already.</p>
+
+<p>There are two ways to close it again.</p>
+
+<pre><code class="language-js">el.close()
+el.removeAttribute('is-open')
+</code></pre>
+
+<p>As an example, you could listen for a video to finish playing and then close kw-video.</p>
+
+<pre><code class="language-js">// jquery + vimeo-jquery-api is required for this snippet
+var $iframe = $('kw-video iframe')
+var kwVideoElement = $('kw-video')
+$iframe.on('finish', kwVideoElement.close)
+</code></pre>
+
+<h2>Styling</h2>
+<p></p>
+<p>By default, <code>&lt;kw-video&gt;</code> elements will be styled as a 16:9 flexible box. Should you want to overwrite the ratio, you can do this:</p>
+<pre><code class="language-css">kw-video::after {
+  /* Change to 4:3 (yes, not 3:4) format */
+  padding-top: 75%; /* fallback without calc */
+  padding-top: calc(3 / 4 * 100%);
+}</code></pre>
+
+<p>The front can be styled however you like. It is not limited to a single image. As long as you have one <code>&lt;kw-video-front&gt;</code> element.</p>
+
+<style>
+	.Custom {
+		background-color: hsl(252, 100%, 59%);
+	}
+	.Custom kw-video-front {
+		color: #fff; display: flex; flex-flow: column;
+		background-color: hsl(252, 100%, 59%);
+	}
+</style>
+
+<kw-video class="Custom">
+  	<button class="KwVideo-close">Close</button>
+	<kw-video-front style="">
+		<img style="width: 64px; height: 64px; margin: auto" src="play.svg" alt="Play">
+		<p style="max-width: 30rem; margin: auto; text-align: center">
+			You could insert an image here. Or a play button. No matter what you insert, when you tap it, it will be replaced with your embed.
+		</p>
+	</kw-video-front>
+	<template>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/81HOHEfuKic" frameborder="0" allowfullscreen></iframe>
+	</template>
+</kw-video>
+
+<p>And this example is open by default: <code>&lt;kw-video is-open&gt;</code>.</p>
+
+<kw-video is-open>
+	<kw-video-front>
+		<img src="https://i.imgur.com/CXmwG8G.jpg" alt="">
+	</kw-video-front>
+	<template>
+		<iframe src="https://player.vimeo.com/video/108194249"></iframe>
+	</template>
+</kw-video>
+
+
+<h2>Roadmap</h2>
+<ul>
+	<li>Add tests</li>
+	<li>Publish to NPM</li>
+	<li>Autoplay after tapping (also on iOS?)</li>
+</ul>
