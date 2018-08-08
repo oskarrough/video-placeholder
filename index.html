@@ -1,20 +1,13 @@
 <!doctype html>
 <html>
-
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kopfwelt Video Component</title>
+<title>&lt;video-placeholder&gt; custom element</title>
 <meta name="description" content="A web component for making video-embeds prettier">
 
-<!-- INCLUDE THESE THREE IN YOUR PAGE -->
+<!-- INCLUDE THESE TWO BABIES IN YOUR PAGE -->
 <script src="video-placeholder.js" async></script>
 <link href="video-placeholder.css" rel="stylesheet">
-
-<!-- These are only for this demo page. -->
-<script src="https://unpkg.com/prismjs@1/prism.js"></script>
-<!-- <link rel="stylesheet" href="https://unpkg.com/prismjs@1.6.0/themes/prism.css"> -->
-<link rel="stylesheet" href="demo.css">
 
 <!-- DEMONSTRATION -->
 
@@ -39,9 +32,11 @@
 
 <pre><code class="language-markup">&lt;video-placeholder&gt;
   &lt;video-placeholder-front&gt;
+	&lt;!-- you can place anything here --&gt;
     &lt;img src=&quot;https://i.imgur.com/CXmwG8G.jpg&quot;&gt;
   &lt;/video-placeholder-front&gt;
   &lt;template&gt;
+	&lt;!-- and here --&gt;
     &lt;iframe src=&quot;https://player.vimeo.com/video/108194249&quot;&gt;&lt;/iframe&gt;
   &lt;/template&gt;
 &lt;/video-placeholder&gt;</code></pre>
@@ -68,9 +63,9 @@ el.setAttribute('open', true)
 
 <p>To close it again, set it to false or completely remove the attribute:</p>
 
-<pre><code class="language-js">el.setAttribute('is-open', false)
+<pre><code class="language-js">el.setAttribute('open', false)
 // or
-el.removeAttribute('is-open')
+el.removeAttribute('open')
 </code></pre>
 
 
@@ -108,8 +103,7 @@ video.addEventListener('ended', () => {
 </style>
 
 <video-placeholder class="Custom">
-  <button class="KwVideo-close">Close</button>
-	<video-placeholder-front style="">
+	<video-placeholder-front>
 		<img style="width: 64px; height: 64px; margin: auto" src="play.svg" alt="Play">
 		<p style="max-width: 30rem; margin: auto; text-align: center">
 			You could insert an image here. Or a play button. No matter what you insert, when you tap it, it will be replaced with your embed.
@@ -120,9 +114,9 @@ video.addEventListener('ended', () => {
 	</template>
 </video-placeholder>
 
-<p>And this example is open by default: <code>&lt;video-placeholder is-open&gt;</code>.</p>
+<p>And this example is open by default: <code>&lt;video-placeholder open&gt;</code>.</p>
 
-<video-placeholder is-open>
+<video-placeholder open>
 	<video-placeholder-front>
 		<img src="https://i.imgur.com/CXmwG8G.jpg" alt="">
 	</video-placeholder-front>
@@ -138,3 +132,8 @@ video.addEventListener('ended', () => {
 	<li>Publish to NPM</li>
 	<li>Autoplay after tapping (also on iOS?)</li>
 </ul>
+
+<!-- These are only for this demo page. Ignore. -->
+<script src="https://unpkg.com/prismjs@1/prism.js"></script>
+<link rel="stylesheet" href="demo.css">
+

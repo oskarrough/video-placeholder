@@ -77,19 +77,3 @@ video-placeholder button {
 	height: 80px;
 }
 
-.KwVideo-close {
-	background-image: url('close.svg');
-	background-color: hsl(0, 0%, 0%);
-	background-size: 50%;
-	background-position: center;
-	width: 4rem;
-	height: 4rem;
-	top: 0.5rem;
-	left: 0.5rem;
-	z-index: 1;
-	visibility: hidden;
-}
-
-video-placeholder[open] .KwVideo-close {
-	visibility: visible;
-}
