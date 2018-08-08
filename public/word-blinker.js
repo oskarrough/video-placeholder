@@ -17,4 +17,7 @@ class WordBlinker extends HTMLElement {
 		this.index = this.index + 1
 	}
 }
-customElements.define('word-blinker', WordBlinker)
+
+if (typeof window.customElements !== 'undefined') {
+	customElements.define('word-blinker', WordBlinker)
+}

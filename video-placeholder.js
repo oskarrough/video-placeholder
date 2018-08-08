@@ -33,14 +33,17 @@ class VideoPlaceholder extends HTMLElement {
 	revealTemplate() {
 		window.requestAnimationFrame(() => {
 			var tpl = this.querySelector('template')
-			if (!tpl) return
 			this.appendChild(tpl.content.cloneNode(true))
 			tpl.remove()
 		})
 	}
 }
 
-customElements.define('video-placeholder', VideoPlaceholder)
-
+// Extends button element so we get default accessibility.
 class VideoPlaceholderFront extends HTMLButtonElement {}
-customElements.define('video-placeholder-front', VideoPlaceholderFront, {extends: 'button'})
+
+if (typeof window.customElements !== 'undefined') {
+	customElements.define('video-placeholder', VideoPlaceholder)
+	customElements.define('video-placeholder-front', VideoPlaceholderFront, {extends: 'button'})
+
+}

@@ -5,16 +5,20 @@
 <title>&lt;video-placeholder&gt; custom element</title>
 <meta name="description" content="A custom element that makes prettier embeds for flashy sites">
 
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/document-register-element/1.8.0/document-register-element.js" >/* W3C Custom Elements */</script> -->
+
 <!-- Include these two babies on your own site! -->
-<script src="video-placeholder.js" async></script>
 <link href="video-placeholder.css" rel="stylesheet">
+<script src="video-placeholder.js" async></script>
+<!-- The fallback is optional -->
+<script src="video-placeholder-fallback.js" async></script>
 
 <!-- These are only for this demo page. Ignore. -->
 <script src="https://unpkg.com/prismjs@1/prism.js"></script>
 <link rel="stylesheet" href="public/demo.css">
 <script src="public/word-blinker.js"></script>
 
-
+<!-- Here we go with examples -->
 <h1>&lt;video-placeholder&gt;</h1>
 <h2>Prettier embeds for flashy sites</h2>
 
@@ -28,7 +32,13 @@
 &lt;/video-placeholder&gt;</code></pre>
 
 <p>Here's the story: you create a a good looking website and want to insert a few embeds from <word-blinker>YouTube, Vimeo, anything, Bandcamp, Soundcloud, Spotify, etc, actually anything you want</word-blinker>.<br>
-&nbsp;&nbsp;&nbsp;Now you have a semi-good looking, and slower, website.</p>
+&nbsp;&nbsp;&nbsp;Now you have a semi-good looking, and slower<sup>1</sup>, website.</p>
+
+<p>
+  <small>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*1: on this site, with a fast wifi, we're talking 3 seconds faster!
+  </small>
+</p>
 
 <h3>
   This custom element for the web makes it easy to use your own placeholders while lazy-loading the 3rd-party content.
@@ -47,6 +57,8 @@
 </video-placeholder>
 
 <h2>How to use</h2>
+
+<p style="background: antiquewhite">Warning: if your browser does not support custom elements, please include <code>video-placeholder-fallback.js</code> as well.</p>
 
 <p>Include the required script and css files:</p>
 
