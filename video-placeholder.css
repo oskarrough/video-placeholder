@@ -1,4 +1,4 @@
-kw-video {
+video-placeholder {
 	display: block;
 	/* Contain absolute children.*/
 	position: relative;
@@ -11,7 +11,7 @@ kw-video {
 }
 
 /* Ratio trick to ensure a fixed aspect ratio.*/
-kw-video::after {
+video-placeholder::after {
 	display: block;
 	content: "";
 	height: 0;
@@ -19,7 +19,7 @@ kw-video::after {
 	padding-top: calc(9 / 16 * 100%);
 }
 
-kw-video > * {
+video-placeholder > * {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -28,28 +28,28 @@ kw-video > * {
 }
 
 /* Make the front image fill the container.*/
-kw-video > kw-video-front img {
+video-placeholder > video-placeholder-front img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
 /* Put first layer on top.*/
-kw-video > kw-video-front {
+video-placeholder > video-placeholder-front {
 	z-index: 1;
 	/* the 16ms is to give the embed a chance to show before showing it */
 	transition: opacity 320ms 16ms;
 }
 
 /* Hide first child, when it is open.*/
-kw-video[is-open] > kw-video-front {
+video-placeholder[open] > video-placeholder-front {
 	opacity: 0;
 	visibility: hidden;
 	transition: opacity 320ms 16ms, visibility 0s 2000ms;
 }
 
 /* Overwrite default button styles*/
-kw-video button {
+video-placeholder button {
 	position: absolute;
 	text-indent: 9999px;
 	border: 0;
@@ -90,6 +90,6 @@ kw-video button {
 	visibility: hidden;
 }
 
-kw-video[is-open] .KwVideo-close {
+video-placeholder[open] .KwVideo-close {
 	visibility: visible;
 }
