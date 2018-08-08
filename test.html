@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>&lt;video-placeholder&gt; custom element</title>
+<script src="video-placeholder.js"></script>
+<link href="video-placeholder.css" rel="stylesheet">
+
+<a href="#">focus me</a>
+
+<video-placeholder>
+	<button is="video-placeholder-front">
+    <img src="play.svg" style="position: absolute; position: absolute; width: 80px; height: 80px; margin: auto; left: 0; right: 0; top: 0; bottom: 0" alt="Play">
+		<img src="https://i.imgur.com/CXmwG8G.jpg" alt="">
+	</button>
+  <template>
+    <iframe src="https://player.vimeo.com/video/108194249"></iframe>
+  </template>
+</video-placeholder>
+
+<a href="#">and me</a>
+
+<video-placeholder open>
+  <button is="video-placeholder-front">
+    <img src="play.svg" style="position: absolute; position: absolute; width: 80px; height: 80px; margin: auto; left: 0; right: 0; top: 0; bottom: 0" alt="Play">
+    <img src="https://i.imgur.com/CXmwG8G.jpg" alt="">
+  </button>
+  <template>
+    <iframe src="https://player.vimeo.com/video/108194249"></iframe>
+  </template>
+</video-placeholder>
+
+<style>
+  video-placeholder {
+    max-width: 800px;
+  }
+</style>

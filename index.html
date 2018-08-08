@@ -5,69 +5,89 @@
 <title>&lt;video-placeholder&gt; custom element</title>
 <meta name="description" content="A web component for making video-embeds prettier">
 
-<!-- INCLUDE THESE TWO BABIES IN YOUR PAGE -->
+<!-- Include these two babies on your own site! -->
 <script src="video-placeholder.js" async></script>
 <link href="video-placeholder.css" rel="stylesheet">
 
-<!-- DEMONSTRATION -->
+<!-- These are only for this demo page. Ignore. -->
+<script src="https://unpkg.com/prismjs@1/prism.js"></script>
+<link rel="stylesheet" href="demo.css">
+<script src="word-blinker.js"></script>
+
+
 
 <h1>&lt;video-placeholder&gt;</h1>
-<p>Do you want to embed a video, iframe or anything, really, only to see an ugly low-quality placeholder image with logos on top on your otherwise stunning website? And now loading the page is slow. What to do?</p>
-<p>You need to…</p>
-<ul>
-	<li>defer loading of the embed</li>
-	<li>hide it behind a front placeholder</li>
-	<li>load and insert the embed when the front is tapped</li>
-</ul>
-<p>Oh no, how annoying to develop, you say. Well, the to-do list above is actually not a to-do list, but exactly what this web component provides.</p>
-
-<h2>How to use</h2>
-<p>Include the video-placeholder script and css files:</p>
-
-<pre><code class="language-markup"><a href="video-placeholder.js">&lt;style href=&quot;video-placeholder.css&quot; rel=&quot;stylesheet&quot;&gt;&lt;/script&gt;</a>
-<a href="video-placeholder.js">&lt;script src=&quot;video-placeholder.js&quot;&gt;&lt;/script&gt;</a>
-</code></pre>
-
-<p>Finally, use the custom element::</p>
 
 <pre><code class="language-markup">&lt;video-placeholder&gt;
-  &lt;video-placeholder-front&gt;
-	&lt;!-- you can place anything here --&gt;
+  &lt;button is=&quot;video-placeholder-front&quot;&gt;
     &lt;img src=&quot;https://i.imgur.com/CXmwG8G.jpg&quot;&gt;
-  &lt;/video-placeholder-front&gt;
+  &lt;/button&gt;
   &lt;template&gt;
-	&lt;!-- and here --&gt;
     &lt;iframe src=&quot;https://player.vimeo.com/video/108194249&quot;&gt;&lt;/iframe&gt;
   &lt;/template&gt;
 &lt;/video-placeholder&gt;</code></pre>
 
-<p>and you will get this. Try to tap it!</p>
+<p>Here's the story: you create a a good looking website and want to insert a few embeds from <word-blinker>YouTube, Vimeo, anything, Bandcamp, Soundcloud, Spotify, etc, actually anything you want</word-blinker>.<br>
+&nbsp;&nbsp;&nbsp;Now you have a semi-good looking, and slower, website.</p>
+
+<h3>
+  This custom element for the web makes it easy to use your own placeholders while lazy-loading the 3rd-party content.
+</h3>
+
+<p>Here it is. Try to click it. You can also use the keyboard to focus and press enter.</p>
 
 <video-placeholder>
-  <video-placeholder-front>
-    <img src="play.svg" style="position: absolute; position: absolute; width: 80px; height: 80px; margin: auto; left: 0; right: 0; top: 0; bottom: 0" alt="Play">
+  <button is="video-placeholder-front">
+    <img src="play.svg" class="PlayButton" alt="Play">
     <img src="https://i.imgur.com/CXmwG8G.jpg" alt="">
-  </video-placeholder-front>
+  </button>
   <template>
     <iframe src="https://player.vimeo.com/video/108194249"></iframe>
   </template>
 </video-placeholder>
 
+<h2>How to use</h2>
+<p>Include the required script and css files:</p>
+
+<pre><code class="language-markup"><a href="video-placeholder.js">&lt;style href=&quot;video-placeholder.css&quot; rel=&quot;stylesheet&quot;&gt;&lt;/script&gt;</a>
+<a href="video-placeholder.js">&lt;script src=&quot;video-placeholder.js&quot;&gt;&lt;/script&gt;</a>
+</code></pre>
+
+<p>Now you can use it anywhere, like this:</p>
+
+<pre><code class="language-markup">&lt;video-placeholder&gt;
+  &lt;button is=&quot;video-placeholder-front&quot;&gt;
+    &lt;img src=&quot;https://i.imgur.com/CXmwG8G.jpg&quot;&gt;
+  &lt;/button&gt;
+  &lt;template&gt;
+    &lt;iframe src=&quot;https://player.vimeo.com/video/108194249&quot;&gt;&lt;/iframe&gt;
+  &lt;/template&gt;
+&lt;/video-placeholder&gt;</code></pre>
+
 <h2>API</h2>
 
-<p>The element can be opened and closed with the `open` attribute:</p>
+<p>The <code class="language-markup">&lt;button is="video-placeholder-front"&gt;</code> element is used as the placeholder's front. You can put anything you want inside.</p>
+<p>The <code class="language-markup">&lt;template&gt;</code> element is used to hide the thing you want to reveal until the element is opened. Also here you can put anything you want.</p>
+<p>You can open it by clicking it or setting the attribute "open": <code class="language-markup">&lt;video-placeholder open&gt;&lt;/video-placeholder&gt;</code></p>
+
+<blockquote>
+  <p><em><small>Please check the source code here as well for examples…</small></em></p>
+</blockquote>
+
+<p>If an <code>open</code> attribute is present on the <code class="language-markup">&lt;video-element&gt;</code>, the element is considered opened. Otherwise and by default it will be closed, meaning only the front is visible.</p>
+
+<p>When opened, whatever is put inside the <code class="language-markup">&lt;template&gt;</code> element will be revealed.</p>
+
+<p>Since this is a custom element, you can also open and close it with open web APIs:</p>
 
 <pre><code class="language-js">var el = document.querySelector('video-placeholder')
-el.setAttribute('open', true) 
+el.setAttribute('open', true)
 </code></pre>
 
-<p>To close it again, set it to false or completely remove the attribute:</p>
+<p>To close it again, remove the attribute:</p>
 
-<pre><code class="language-js">el.setAttribute('open', false)
-// or
-el.removeAttribute('open')
+<pre><code class="language-js">el.removeAttribute('open')
 </code></pre>
-
 
 <p>To test, open your browser console and try the examples. Notice how first video-placeholder on this page opened? Well, unless you already opened it yourself already.</p>
 
@@ -77,63 +97,61 @@ el.removeAttribute('open')
 <pre><code class="language-js">var el = document.querySelector('video-placeholder')
 var video = el.querySelector('video')
 video.addEventListener('ended', () => {
-	el.removeAttribute('open')
+  el.removeAttribute('open')
 })
 </code></pre>
 
 <h2>Styling</h2>
 <p></p>
-<p>By default, <code>&lt;video-placeholder&gt;</code> elements will be styled as a 16:9 flexible box. Should you want to overwrite the ratio, you can do this:</p>
+<p>By default, <code>&lt;video-placeholder&gt;</code> elements will be styled as a 16:9 flexible box. Images will be scaled to fit as well.</p>
+<p>Should you want to overwrite the ratio, you can do this:</p>
 <pre><code class="language-css">video-placeholder::after {
   /* Change to 4:3 (yes, not 3:4) format */
   padding-top: 75%; /* fallback without calc */
   padding-top: calc(3 / 4 * 100%);
 }</code></pre>
 
-<p>The front can be styled however you like. It is not limited to a single image. As long as you have one <code>&lt;video-placeholder-front&gt;</code> element.</p>
+<p>The front can be styled however you like. It is not limited to a single image. As long as you have one <code>&lt;button is="video-placeholder-front"&gt;</code> element.</p>
 
 <style>
-	.Custom {
-		background-color: hsl(252, 100%, 59%);
-	}
-	.Custom video-placeholder-front {
-		color: #fff; display: flex; flex-flow: column;
-		background-color: hsl(252, 100%, 59%);
-	}
+  video-placeholder.Custom > button {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-size: 1.5em;
+    background-color: hsl(252, 100%, 59%);
+    color: #fff;
+  }
 </style>
 
 <video-placeholder class="Custom">
-	<video-placeholder-front>
-		<img style="width: 64px; height: 64px; margin: auto" src="play.svg" alt="Play">
-		<p style="max-width: 30rem; margin: auto; text-align: center">
-			You could insert an image here. Or a play button. No matter what you insert, when you tap it, it will be replaced with your embed.
-		</p>
-	</video-placeholder-front>
-	<template>
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/81HOHEfuKic" frameborder="0" allowfullscreen></iframe>
-	</template>
+  <button is="video-placeholder-front">
+    <img style="width: 64px; height: 64px; margin: auto" src="play.svg" alt="Play">
+    <p style="max-width: 30rem; margin: auto; text-align: center">
+      You could insert an image here. Or a play button. No matter what you insert, when you tap it, it will be replaced with your embed.
+    </p>
+  </button>
+  <template>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/81HOHEfuKic" frameborder="0" allowfullscreen></iframe>
+  </template>
 </video-placeholder>
 
 <p>And this example is open by default: <code>&lt;video-placeholder open&gt;</code>.</p>
 
 <video-placeholder open>
-	<video-placeholder-front>
-		<img src="https://i.imgur.com/CXmwG8G.jpg" alt="">
-	</video-placeholder-front>
-	<template>
-		<iframe src="https://player.vimeo.com/video/108194249"></iframe>
-	</template>
+  <button is="video-placeholder-front">
+    <img src="https://i.imgur.com/CXmwG8G.jpg" alt="">
+  </button>
+  <template>
+    <iframe src="https://player.vimeo.com/video/108194249"></iframe>
+  </template>
 </video-placeholder>
-
 
 <h2>Roadmap</h2>
 <ul>
-	<li>Add tests</li>
-	<li>Publish to NPM</li>
-	<li>Autoplay after tapping (also on iOS?)</li>
+  <li>Add tests</li>
+  <li>Publish to NPM</li>
+  <li>Autoplay after tapping (also on iOS?)</li>
 </ul>
 
-<!-- These are only for this demo page. Ignore. -->
-<script src="https://unpkg.com/prismjs@1/prism.js"></script>
-<link rel="stylesheet" href="demo.css">
 
