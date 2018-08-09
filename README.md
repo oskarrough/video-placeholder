@@ -5,11 +5,11 @@ Use your own placeholders while lazy-loading the (3rd-party) content.
 
 ⇢ [Documentation and examples](https://video-placeholder.now.sh/)
 
-## Usage
+## Copy/paste example
 
 ```html
 <!-- cdn usage coming soon -->
-<style href="video-placeholder.css" rel="stylesheet"></style>
+<link href="video-placeholder.css" rel="stylesheet">
 <script src="video-placeholder.js" async></script>
 
 <video-placeholder>
