@@ -8,9 +8,8 @@ Use your own placeholders while lazy-loading the (3rd-party) content.
 ## Copy/paste example
 
 ```html
-<!-- cdn usage coming soon -->
-<link href="video-placeholder.css" rel="stylesheet">
-<script src="video-placeholder.js" async></script>
+<link href="https://cdn.jsdelivr.net/gh/oskarrough/video-placeholder/video-placeholder.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/oskarrough/video-placeholder/video-placeholder.js" async></script>
 
 <video-placeholder>
   <button is="video-placeholder-front">
@@ -24,5 +23,4 @@ Use your own placeholders while lazy-loading the (3rd-party) content.
 </video-placeholder>
 ```
 
-To open a `<video-placeholder>`, add the `open` attribute: `<video-placeholder open>`.  
-To close it again, remove the attribute: `el.removeAttribute('open')`.
+You can open and close it by adding and removing the `open` attribute directly on the element.
