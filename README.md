@@ -1,32 +1,28 @@
 # &lt;video-placeholder&gt;
 
-### Prettier embeds for flashy sites
+A custom element that makes prettier embeds for flashy sites.  
+Use your own placeholders while lazy-loading the (3rd-party) content.
 
-A custom element for the web. Use your own placeholders while lazy-loading the (3rd-party) content.
+⇢ [Documentation and examples](https://video-placeholder.now.sh/)
 
-> [Documentation and examples](https://video-placeholder-skrmkqxpxm.now.sh/).
+## Usage
 
 ```html
-<link href="video-placeholder.css" rel="stylesheet">
-<script src="video-placeholder.js" async></script>
+<!-- cdn usage coming soon -->
+<style href="video-placeholder.css" rel="stylesheet"></script>
+<script src="video-placeholder.js"></script>
 
 <video-placeholder>
   <button is="video-placeholder-front">
     <img src="https://i.imgur.com/CXmwG8G.jpg">
-    <!--- you can put anything here -->
+    <!-- put anything here -->
   </button>
   <template>
     <iframe src="https://player.vimeo.com/video/108194249"></iframe>
-    <!--- anything you put here will be lazy-loaded, as soon
-          as you "open" the placeholder by clicking. -->
+    <!-- and here. will be revealed when above button is clicked -->
   </template>
 </video-placeholder>
 ```
 
-To open a video-placeholder, add an `open` attribute like so:
-
-```html
-<video-placeholder open>
-```
-
-To close it again, remove the attribute with `el.removeAttribute('open')`.
+To open a `<video-placeholder>`, add the `open` attribute: `<video-placeholder open>`.  
+To close it again, remove the attribute: `el.removeAttribute('open')`.
