@@ -4,7 +4,7 @@
 
 A custom element for the web. Use your own placeholders while lazy-loading the (3rd-party) content.
 
-> [Documentation and examples](https://video-placeholder-rkmfitfwpy.now.sh/).
+> [Documentation and examples](https://video-placeholder-skrmkqxpxm.now.sh/).
 
 ```html
 <link href="video-placeholder.css" rel="stylesheet">
