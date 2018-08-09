@@ -3,12 +3,16 @@ class WordBlinker extends HTMLElement {
 		requestAnimationFrame(() => {
 			this.words = this.textContent.split(', ')
 			this.index = 0
-			this.interval = setInterval(this.render.bind(this), 1500)
+			this.interval = setInterval(this.render.bind(this), 500)
 			this.render()
 		})
 	}
 	render() {
 		var word = this.words[this.index]
+		if (!word) {
+			this.index = 0
+			return
+		}
 		this.innerText = word
 		this.index = this.index + 1
 	}
