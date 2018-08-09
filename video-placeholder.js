@@ -1,13 +1,18 @@
 class VideoPlaceholder extends HTMLElement {
 	// open = false
 
-	constructor() {
-		super()
-		this.addEventListener('click', this.click)
-	}
+	constructor(self) {
+		// Hack for people using polyfills.
+		// https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+    self = super(self)
+		self.addEventListener('click', self.click)
+    return self
+  }
 
 	connectedCallback() {
-		if (this.getAttribute('open') !== null) this.revealTemplate()
+		if (this.getAttribute('open') !== null) {
+			this.revealTemplate()
+		}
 	}
 
 	// Attributes that trigger callback below.
@@ -16,16 +21,14 @@ class VideoPlaceholder extends HTMLElement {
 	}
 
 	attributeChangedCallback(name, oldValue, newValue) {
-		console.log({name, oldValue, newValue})
+		// console.log({name, oldValue, newValue})
 		if (name === 'open' && newValue !== null) {
 			this.revealTemplate()
 		}
 	}
 
 	click(event) {
-		if (event.target.className === 'KwVideo-close') {
-			this.removeAttribute('open')
-		} else if (!this.getAttribute('open')) {
+		if (!this.getAttribute('open')) {
 			this.setAttribute('open', true)
 		}
 	}
@@ -33,6 +36,7 @@ class VideoPlaceholder extends HTMLElement {
 	revealTemplate() {
 		window.requestAnimationFrame(() => {
 			var tpl = this.querySelector('template')
+			if (!tpl) return
 			this.appendChild(tpl.content.cloneNode(true))
 			tpl.remove()
 		})
@@ -42,8 +46,5 @@ class VideoPlaceholder extends HTMLElement {
 // Extends button element so we get default accessibility.
 class VideoPlaceholderFront extends HTMLButtonElement {}
 
-if (typeof window.customElements !== 'undefined') {
-	customElements.define('video-placeholder', VideoPlaceholder)
-	customElements.define('video-placeholder-front', VideoPlaceholderFront, {extends: 'button'})
-
-}
+customElements.define('video-placeholder', VideoPlaceholder)
+customElements.define('video-placeholder-front', VideoPlaceholderFront, {extends: 'button'})

@@ -5,13 +5,16 @@
 <title>&lt;video-placeholder&gt; custom element</title>
 <meta name="description" content="A custom element that makes prettier embeds for flashy sites">
 
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/document-register-element/1.8.0/document-register-element.js" >/* W3C Custom Elements */</script> -->
+<!-- If you include this polyfill, it'll work in Edge and Firefox too! -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/document-register-element/1.8.0/document-register-element.js" >/* W3C Custom Elements */</script>
 
-<!-- Include these two babies on your own site! -->
+<!-- REQUIRED: include these two babies on your own site! -->
 <link href="video-placeholder.css" rel="stylesheet">
 <script src="video-placeholder.js" async></script>
-<!-- The fallback is optional -->
-<script src="video-placeholder-fallback.js" async></script>
+
+<!-- The fallback is useful in case you don't want to polyfill.
+  It'll simply leave the embeds as is and ignore the placeholders -->
+<!-- <script src="video-placeholder-fallback.js" async></script> -->
 
 <!-- These are only for this demo page. Ignore. -->
 <script src="https://unpkg.com/prismjs@1/prism.js"></script>
@@ -58,7 +61,8 @@
 
 <h2>How to use</h2>
 
-<p style="background: antiquewhite">Warning: if your browser does not support custom elements, please include <code>video-placeholder-fallback.js</code> as well.</p>
+<p style="background: antiquewhite">
+  Warning: if your browser does not support <a href="https://caniuse.com/#feat=custom-elements">custom elements</a>, please <a href="https://github.com/WebReflection/document-register-element#via-cdn">include a polyfill</a>. There's also an optional <code>video-placeholder-fallback.js</code> version that'll leave the embeds visible. But then you might as well not use this.</p>
 
 <p>Include the required script and css files:</p>
 
@@ -154,18 +158,12 @@ video.addEventListener('ended', () => {
 
 <video-placeholder open>
   <button is="video-placeholder-front">
-    <img src="https://i.imgur.com/CXmwG8G.jpg" alt="">
+    <img src="public/play.svg" class="PlayButton" alt="Play">
+    <img src="https://i.imgur.com/QIoEAyl.jpg" alt="">
   </button>
   <template>
     <iframe src="https://player.vimeo.com/video/108194249"></iframe>
   </template>
 </video-placeholder>
 
-<h2>Roadmap</h2>
-<ul>
-  <li>Add tests</li>
-  <li>Publish to NPM</li>
-  <li>Autoplay after tapping (also on iOS?)</li>
-</ul>
-
-
+<p>See more (or less) on <a href="https://github.com/oskarrough/video-placeholder">https://github.com/oskarrough/video-placeholder</a>.</p>

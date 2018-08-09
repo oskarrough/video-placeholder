@@ -1,13 +1,9 @@
 class WordBlinker extends HTMLElement {
-	constructor() {
-		super()
-		this.speed = 2000
-	}
 	connectedCallback() {
 		requestAnimationFrame(() => {
 			this.words = this.textContent.split(', ')
 			this.index = 0
-			this.interval = setInterval(this.render.bind(this), this.speed)
+			this.interval = setInterval(this.render.bind(this), 1500)
 			this.render()
 		})
 	}
@@ -18,6 +14,4 @@ class WordBlinker extends HTMLElement {
 	}
 }
 
-if (typeof window.customElements !== 'undefined') {
-	customElements.define('word-blinker', WordBlinker)
-}
+customElements.define('word-blinker', WordBlinker)
