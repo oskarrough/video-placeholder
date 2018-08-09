@@ -1,46 +1,46 @@
 class VideoPlaceholder extends HTMLElement {
-	// open = false
+  // open = false
 
-	constructor(self) {
-		// Hack for people using polyfills.
-		// https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  constructor(self) {
+    // Hack for people using polyfills.
+    // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
     self = super(self)
-		self.addEventListener('click', self.click)
+    self.addEventListener('click', self.click)
     return self
   }
 
-	connectedCallback() {
-		if (this.getAttribute('open') !== null) {
-			this.revealTemplate()
-		}
-	}
+  connectedCallback() {
+    if (this.getAttribute('open') !== null) {
+      this.revealTemplate()
+    }
+  }
 
-	// Attributes that trigger callback below.
-	static get observedAttributes() {
-		return ['open']
-	}
+  // Attributes that trigger callback below.
+  static get observedAttributes() {
+    return ['open']
+  }
 
-	attributeChangedCallback(name, oldValue, newValue) {
-		// console.log({name, oldValue, newValue})
-		if (name === 'open' && newValue !== null) {
-			this.revealTemplate()
-		}
-	}
+  attributeChangedCallback(name, oldValue, newValue) {
+    // console.log({name, oldValue, newValue})
+    if (name === 'open' && newValue !== null) {
+      this.revealTemplate()
+    }
+  }
 
-	click(event) {
-		if (!this.getAttribute('open')) {
-			this.setAttribute('open', true)
-		}
-	}
+  click(event) {
+    if (!this.getAttribute('open')) {
+      this.setAttribute('open', true)
+    }
+  }
 
-	revealTemplate() {
-		window.requestAnimationFrame(() => {
-			var tpl = this.querySelector('template')
-			if (!tpl) return
-			this.appendChild(tpl.content.cloneNode(true))
-			tpl.remove()
-		})
-	}
+  revealTemplate() {
+    window.requestAnimationFrame(() => {
+      var tpl = this.querySelector('template')
+      if (!tpl) return
+      this.appendChild(tpl.content.cloneNode(true))
+      tpl.remove()
+    })
+  }
 }
 
 // Extends button element so we get default accessibility.
