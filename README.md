@@ -9,8 +9,8 @@ Use your own placeholders while lazy-loading the (3rd-party) content.
 
 ```html
 <!-- cdn usage coming soon -->
-<style href="video-placeholder.css" rel="stylesheet"></script>
-<script src="video-placeholder.js"></script>
+<style href="video-placeholder.css" rel="stylesheet"></style>
+<script src="video-placeholder.js" async></script>
 
 <video-placeholder>
   <button is="video-placeholder-front">
