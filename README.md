@@ -3,7 +3,7 @@
 A custom element that makes prettier embeds for flashy sites.  
 Use your own placeholders while lazy-loading the (3rd-party) content.
 
-⇢ [Documentation and examples](https://video-placeholder.now.sh/)
+⇢ [Documentation and examples](https://video-placeholder.netlify.com/)
 
 ## Copy/paste example
 
